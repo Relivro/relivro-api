@@ -17,7 +17,7 @@ import java.time.YearMonth;
 
 @Data
 @Entity(name = "user")
-@Table(name = "user")
+@Table(name = "\"user\"")
 @AllArgsConstructor
 @NoArgsConstructor
 public class UserModel {
