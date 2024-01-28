@@ -1,4 +1,4 @@
-package com.api.relivro.models;
+package com.api.relivro.model;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
