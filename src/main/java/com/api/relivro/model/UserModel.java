@@ -1,5 +1,6 @@
 package com.api.relivro.model;
 
+import com.api.relivro.dto.UserRegistrationData;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -44,6 +45,16 @@ public class UserModel {
 
     @Column(name = "updated_at")
     private LocalDateTime updatedAt;
+
+    public UserModel(UserRegistrationData data) {
+        this.name = data.name();
+        this.username = data.username();
+        this.email = data.email();
+        this.password = data.password();
+        this.city = data.city();
+        this.state = data.state();
+        this.birthdate = data.birthdate();
+    }
 
     @PrePersist
     protected void onCreate() {
