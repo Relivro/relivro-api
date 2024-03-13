@@ -38,7 +38,7 @@ public class UserModel {
 
     private String state;
 
-    private YearMonth birthdate;
+    private String birthdate;
 
     @Column(name = "created_at")
     private LocalDateTime createdAt;
@@ -53,7 +53,11 @@ public class UserModel {
         this.password = data.password();
         this.city = data.city();
         this.state = data.state();
-        this.birthdate = data.birthdate();
+        this.birthdate = convertYearMonthToString(data.birthdate()) ;
+    }
+
+    private String convertYearMonthToString(YearMonth yearMonth) {
+        return yearMonth.toString();
     }
 
     @PrePersist
