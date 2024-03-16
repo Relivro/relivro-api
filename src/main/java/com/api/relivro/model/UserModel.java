@@ -14,7 +14,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
-import java.time.YearMonth;
 
 @Data
 @Table(name="users")
@@ -53,12 +52,9 @@ public class UserModel {
         this.password = data.password();
         this.city = data.city();
         this.state = data.state();
-        this.birthdate = convertYearMonthToString(data.birthdate()) ;
+        this.birthdate = data.birthdate();
     }
 
-    private String convertYearMonthToString(YearMonth yearMonth) {
-        return yearMonth.toString();
-    }
 
     @PrePersist
     protected void onCreate() {
