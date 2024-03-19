@@ -1,5 +1,6 @@
 package com.api.relivro.model;
 
+import com.api.relivro.dto.UserRegistrationData;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -7,15 +8,16 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.PrePersist;
 import jakarta.persistence.PreUpdate;
+import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
-import java.time.YearMonth;
 
 @Data
-@Entity(name = "user")
+@Table(name="users")
+@Entity(name = "User")
 @AllArgsConstructor
 @NoArgsConstructor
 public class UserModel {
@@ -23,13 +25,9 @@ public class UserModel {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    private String name;
+
     private String username;
-
-    @Column(name = "first_name")
-    private String firstName;
-
-    @Column(name = "last_name")
-    private String lastName;
 
     private String email;
 
@@ -39,13 +37,24 @@ public class UserModel {
 
     private String state;
 
-    private YearMonth birthdate;
+    private String birthdate;
 
     @Column(name = "created_at")
     private LocalDateTime createdAt;
 
     @Column(name = "updated_at")
     private LocalDateTime updatedAt;
+
+    public UserModel(UserRegistrationData data) {
+        this.name = data.name();
+        this.username = data.username();
+        this.email = data.email();
+        this.password = data.password();
+        this.city = data.city();
+        this.state = data.state();
+        this.birthdate = data.birthdate();
+    }
+
 
     @PrePersist
     protected void onCreate() {
